@@ -1,7 +1,13 @@
 package com.example.brom.activitiesapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     private String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
@@ -14,6 +20,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.item_list,
+                R.id.itemtextview, mountainNames);
+
+        final ListView thelistview = (ListView)findViewById(R.id.thelistview);
+        thelistview.setAdapter(adapter);
+
+        thelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(thelistview.getContext(), MountainDetailsActivity.class);
+                Bundle extras = new Bundle();
+
+                String name = mountainNames[position];
+                String location = mountainLocations[position];
+                String height = Integer.toString(mountainHeights[position]);
+                extras.putString("EXTRA_NAME", name);
+                extras.putString("EXTRA_LOCATION", location);
+                extras.putString("EXTRA_HEIGHT", height);
+                intent.putExtras(extras);
+                thelistview.getContext().startActivity(intent);
+            }
+        });
         // 1. Create a ListView as in previous assignment
         // 2. Create a new activity named "MountainDetailsActivity
         // 3. Create a new Layout file for the MountainDetailsActivity called
