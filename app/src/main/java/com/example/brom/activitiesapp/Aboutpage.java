@@ -13,6 +13,6 @@ public class Aboutpage extends AppCompatActivity {
 
         TextView aboutTexten = (TextView)findViewById(R.id.textView_about);
 
-        aboutTexten.setText("Hejsanhoppsan");
+        aboutTexten.setText("Glasslistan skapades för att lista dom bästa glassarna som säljs i paket från Sveriges olika matvarubutiker! Trycker man på en produkt i listan så får man mer intressant information om produkten. Den tänkta målgruppen för sidan är ungdomar och vuxna som ofta handlar i matbutiker och gärna äter glass. Här kan de finna nya intressanta produkter som de sedan kan köpa i en butik där de bor.");
     }
 }
